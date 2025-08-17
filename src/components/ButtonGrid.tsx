@@ -9,13 +9,12 @@ const buttons = [
   '0', '.', '=',
 ];
 
-const ButtonGrid: React.FC = () => {
-  const handleClick = (value: string) => {
-    console.log('Нажата кнопка:', value);
-    // сюда потом вставишь обработку логики калькулятора
-  };
+type ButtonGridProps = {
+  onButtonClick: (value: string) => void;
+};
 
-  // Функция для определения типа кнопки
+const ButtonGrid: React.FC<ButtonGridProps> = ({ onButtonClick }) => {
+
   const getButtonType = (label: string): string => {
     if (label === 'C') return 'clear';
     if (label === '=') return 'equals';
@@ -24,10 +23,9 @@ const ButtonGrid: React.FC = () => {
     return 'number';
   };
 
-  // Функция для определения дополнительных классов
   const getButtonClass = (label: string): string => {
     const type = getButtonType(label);
-    if (label === '0') return `${type} zero`; // широкая кнопка для 0
+    if (label === '0') return `${type} zero`;
     return type;
   };
 
@@ -37,7 +35,7 @@ const ButtonGrid: React.FC = () => {
         <Button 
           key={label} 
           label={label} 
-          onClick={handleClick}
+          onButtonClick={onButtonClick} // используем пропс
           className={getButtonClass(label)}
         />
       ))}

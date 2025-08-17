@@ -1,9 +1,13 @@
 import React from 'react';
 
-const Display: React.FC = () => {
+interface DisplayProps {
+  value: string;
+}
+
+const Display: React.FC<DisplayProps> = ({ value }) => {
   return (
     <div className="display">
-      0
+      {value}
     </div>
   );
 };

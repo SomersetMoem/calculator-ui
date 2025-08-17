@@ -1,16 +1,17 @@
+// Button.tsx
 import React from 'react';
 
-interface ButtonProps {
+type ButtonProps = {
   label: string;
-  onClick: (value: string) => void;
-  className?: string; // Добавь эту строку
-}
+  className?: string;
+  onButtonClick: (value: string) => void; // <-- добавляем сюда
+};
 
-const Button: React.FC<ButtonProps> = ({ label, onClick, className = '' }) => {
+const Button: React.FC<ButtonProps> = ({ label, className, onButtonClick }) => {
   return (
-    <button 
-      className={className} // Используй переданный класс
-      onClick={() => onClick(label)}
+    <button
+      className={`button ${className}`}
+      onClick={() => onButtonClick(label)} // вызываем с меткой кнопки
     >
       {label}
     </button>
